@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: myapp3-container
-          image: wemadevops/kubenginx:3.0.0
+          image: nginx
           ports:
             - containerPort: 80
