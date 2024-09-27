@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/Kenmakhanu/eks-argo.git
+    repoURL: https://github.com/Wemadevops/eks-argo.git
     targetRevision: main
     path: code
   destination:

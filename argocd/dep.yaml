@@ -7,8 +7,8 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/Kenmakhanu/eks-argo.git
-    targetRevision: HEAD
+    repoURL: https://github.com/Wemadevops/eks-argo.git
+    targetRevision: main
     path: argocd
   destination:
     server: https://kubernetes.default.svc
