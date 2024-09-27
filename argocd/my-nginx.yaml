@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: ./helm/my-nginx
+    repoURL: https://github.com/Wemadevops/eks-argo.git
+    targetRevision: 0.1.0
+    helm:
+      releaseName: my-nginx
+      values: |
+        service:
+          type: NodePort
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: dev
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
