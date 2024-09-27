@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      name: myapp3-pod
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: myapp3-container
+          image: nginx
+          ports:
+            - protocol: TCP
+              port: 81
+              targetPort: 80
