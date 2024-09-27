@@ -22,6 +22,11 @@ spec:
             revision: main
             repo: eks-argo
             namespace: stage
+          - app: my-monitoring
+            path: prod
+            revision: main
+            repo: argo-test
+            namespace: monitoring
   template:
     metadata:
       name: '{{app}}'
