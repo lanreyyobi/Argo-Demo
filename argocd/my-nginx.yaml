@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    chart: ./helm/my-nginx
-    repoURL: https://github.com/Wemadevops/eks-argo.git
+    chart: my-nginx
+    repoURL: git+https://github.com/Wemadevops/eks-argo@my-nginx?ref=main&sparse=0
     targetRevision: 0.1.0
     helm:
       releaseName: my-nginx
