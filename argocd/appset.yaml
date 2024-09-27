@@ -12,6 +12,11 @@ spec:
             revision: main
             namespace: dev
             repo: eks-argo
+          - app: my-prod
+            path: test
+            revision: main
+            repo: eks-argo
+            namespace: prod
 
   template:
     metadata:
