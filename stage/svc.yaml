@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: deployment-svc
+  name: deployment-nodeport-svc
 spec:
   type: NodePort
   selector:
