@@ -17,7 +17,11 @@ spec:
             revision: main
             repo: eks-argo
             namespace: prod
-
+          - app: my-stage
+            path: test
+            revision: main
+            repo: eks-argo
+            namespace: stage
   template:
     metadata:
       name: '{{app}}'
