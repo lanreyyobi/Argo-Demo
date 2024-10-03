@@ -1,0 +1,20 @@
+# create an ebs volume and get the id.
+# aws ec2 create-volume --size 10 --availability-zone us-west-2a
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-ebs
+spec:
+  containers:
+  - image: nginx
+    name: test-container
+    volumeMounts:
+    - mountPath: /test-ebs
+      name: test-volume
+  volumes:
+  - name: test-volume
+    # This AWS EBS volume must already exist.
+    awsElasticBlockStore:
+      volumeID: vol-0eaf2b2c72633244f
+      fsType: ext4

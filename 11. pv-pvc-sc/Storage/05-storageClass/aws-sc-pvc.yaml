@@ -1,0 +1,14 @@
+# A pvc to create a dynamic volume utilizing the storageClass created
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc
+  labels:
+    app: nginx
+spec:
+  storageClassName: gp2 #Refer the storageClass name created
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

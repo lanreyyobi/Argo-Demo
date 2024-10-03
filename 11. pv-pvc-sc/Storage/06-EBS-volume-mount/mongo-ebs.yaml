@@ -1,0 +1,46 @@
+# Mongo host path rc
+# create an ebs volume and get the id.
+# aws ec2 create-volume --size 10 --availability-zone us-west-2a
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: mongo
+  name: mongo-controller
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: mongo
+    spec:
+      containers:
+      - image: mongo
+        name: mongo
+        ports:
+        - name: mongo
+          containerPort: 27017
+          hostPort: 27017
+        volumeMounts:
+        - name: mongo-persistent-storage
+          mountPath: /data/db
+      volumes:
+      - name: mongo-persistent-storage
+        awsElasticBlockStore:
+          volumeID: vol-0c31861f382f24c0b
+          fsType: ext4
+---
+# Mongo Node Port RC
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: mongo
+  name: mongo
+spec:
+  type: ClusterIP
+  ports:
+    - port: 27017
+      targetPort: 27017
+  selector:
+    name: mongo

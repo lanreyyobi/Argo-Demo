@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  creationTimestamp: "2023-10-19T01:43:07Z"
+  labels:
+    app.kubernetes.io/name: aws-efs-csi-driver
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::411854276167:role/efs-csi
+  name: efs-csi-controller-sa
+  namespace: kube-system
+  resourceVersion: "1257"
+  uid: 21eff2ed-1abb-498b-ae43-1996e8a800f6

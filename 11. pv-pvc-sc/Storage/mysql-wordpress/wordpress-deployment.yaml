@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: wordpress-deployment
+spec:
+  selector:
+    matchLabels:
+      app: wordpress1
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+   metadata:
+    labels:
+      app: wordpress1
+   spec:
+     containers:
+     - name: wordpress
+       image: wordpress
+       ports:
+       - containerPort: 80
+       env:
+       - name: WORDPRESS_DB_HOST
+         value: mysql-service
+       - name: WORDPRESS_DB_USER
+         valueFrom:
+           secretKeyRef:
+             name: app-secret
+             key: dbuser
+       - name: WORDPRESS_DB_PASSWORD
+         valueFrom:
+           secretKeyRef:
+             name: app-secret
+             key: dbpass
+       - name: WORDPRESS_DB_NAME
+         valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: dbname
