@@ -1,5 +1,5 @@
 data "aws_eks_cluster" "this" {
-  name = "demo"
+  name = ""
 }
 
 data "aws_eks_cluster_auth" "cluster" {
@@ -8,14 +8,14 @@ data "aws_eks_cluster_auth" "cluster" {
 
 data "aws_vpc" "dev" {
   tags = {
-    Name = "eks-vpc"
+    Name = "ek-vpc"
   }
 }
 
 data "aws_subnets" "private" {
   filter {
     name   = "vpc-id"
-    values = [data.aws_vpc.dev.id]
+    values = [data.aws_vpc.de.id]
   }
 }
 
@@ -26,18 +26,18 @@ data "aws_subnets" "nodes" {
   }
 
   tags = {
-    Name = var.subnet_tags
+    Name = var.subnet_tag
   }
 }
 
 data "aws_security_groups" "efs_sg" {
   filter {
     name   = "tag:Name"
-    values = ["nfs-efs"]
+    values = ["nf-efs"]
   }
 
   filter {
-    name   = "vpc-id"
+    name   = "vc-id"
     values = [data.aws_vpc.dev.id]
   }
 }
